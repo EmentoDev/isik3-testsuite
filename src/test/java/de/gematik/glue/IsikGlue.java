@@ -66,12 +66,15 @@ public class IsikGlue {
   }
 
   @When("Get FHIR resource at {string} with content type {string}")
-  @SneakyThrows
   public void getAndValidateResource(String address, String contentType) {
     rBelValidatorGlue.tgrClearRecordedMessages();
     String resolvedAddress = TigerGlobalConfiguration.resolvePlaceholders(address);
     new HttpGlueCode().setDefaultHeader("Accept", "application/fhir+" + contentType);
-    new HttpGlueCode().sendEmptyRequest(Method.GET, new URI(resolvedAddress));
+    try {
+      new HttpGlueCode().sendEmptyRequest(Method.GET, new URI(resolvedAddress));
+    } catch (java.net.URISyntaxException e) {
+      throw new RuntimeException("Invalid URI: " + resolvedAddress, e);
+    }
     rBelValidatorGlue.findLastRequest();
     rBelValidatorGlue.currentResponseMessageAttributeMatches("$.responseCode", "200");
     rBelValidatorGlue.currentResponseMessageAttributeMatches(
