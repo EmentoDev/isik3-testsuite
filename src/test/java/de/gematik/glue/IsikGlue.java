@@ -38,12 +38,13 @@ import io.cucumber.java.en.When;
 import io.restassured.http.Method;
 import java.net.URI;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.hl7.fhir.r4.model.DomainResource;
 import org.hl7.fhir.r4.model.Reference;
 
-@Slf4j
 public class IsikGlue {
+  private static final Logger log = LoggerFactory.getLogger(IsikGlue.class);
 
   public static final String REGEX_REFERENCE_MATCHES_ID =
       "%s.reference.replaceMatches('/_history/.+','').matches('\\\\b%s$')";
