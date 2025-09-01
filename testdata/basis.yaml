@@ -4,7 +4,7 @@ account-read-identifier-value: 0123456789
 account-read-patient-id: Account-Read-Patient-Example
 codesystem-read-id: CodeSystem-Read-Example
 condition-read-active-id: Condition-Read-Active-Example
-patient-read-id: Patient-Read-Example
+patient-read-id: 685bb61a77e983596a4b08e9
 patient-read-extended-id: Patient-Read-Extended-Example
 procedure-read-id: Procedure-Read-Example
 relatedperson-read-id: RelatedPerson-Read-Example
